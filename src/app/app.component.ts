@@ -1,17 +1,33 @@
-import {Component, ViewChild} from '@angular/core';
-import {WebstoreService} from './webstore/services/WebstoreService';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {WebstoreService} from './services/WebstoreService';
 import {WebstoreComponent} from './webstore/webstore.component';
-import {UsersService} from './webstore/services/UsersService';
+import {UserService} from './services/UserService';
+import {AuthService} from './services/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [WebstoreService, UsersService]
+  providers: [WebstoreService, UserService, AuthService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'M WebStore';
   private collapsed = true;
+  private isLoggedIn = false;
+
+  constructor(private authService: AuthService) {  }
+  ngOnInit() {
+    this.isLogged();
+  }
+
+  logout() {
+    this.isLoggedIn = false;
+    this.authService.logout();
+  }
+
+  isLogged() {
+    this.isLoggedIn = this.authService.isLoggedIn();
+  }
 
   @ViewChild('webstoreC', {static: false})
   webstoreC: WebstoreComponent;
@@ -23,5 +39,4 @@ export class AppComponent {
   reset() {
     this.webstoreC.reset();
   }
-
 }

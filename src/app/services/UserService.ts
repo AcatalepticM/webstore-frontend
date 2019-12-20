@@ -1,11 +1,11 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {User} from '../models/users.model';
+import {User} from '../webstore/models/users.model';
 
 
 @Injectable()
-export class UsersService {
-  private userUrl = '/api/user';
+export class UserService {
+  private userUrl = '/api/user/';
 
   constructor(private http: HttpClient) {
   }
@@ -14,9 +14,13 @@ export class UsersService {
     return this.http.get(this.userUrl);
   }
 
+  getUser(username) {
+    return this.http.get(this.userUrl + username );
+
+  }
+
   createUser(user: User) {
-    return this.http.post(this.userUrl, user).subscribe(
-      (response) => console.log(response),
+    return this.http.post(this.userUrl + 'register', user).subscribe(
       (error) => console.log(error)
     );
   }

@@ -1,5 +1,5 @@
 <div class="accordian">
   <ul style="font-size: 19px;" *ngFor="let product of products">
-    <li><a class="image_title" href="/product/{{ product.id }}" > {{ product.name }}</a><a href="#"><img src={{product.thumbnailUrl}} width="640px" height="320px"></a></li>
+    <li><a class="image_title" [title]="product.name" [routerLink]="['/products', product.id]" routerLinkActive="active"> {{ product.name }}</a><a href="#"><img src={{product.thumbnailUrl}} width="640px" height="320px"></a></li>
    </ul>
 </div>

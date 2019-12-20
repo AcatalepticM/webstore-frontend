@@ -3,7 +3,7 @@ import {Product} from '../models/product.model';
 import {Subscription} from 'rxjs';
 import {ProductOrders} from '../models/product-orders.model';
 import {ProductOrder} from '../models/product-order.model';
-import {WebstoreService} from '../services/WebstoreService';
+import {WebstoreService} from '../../services/WebstoreService';
 
 @Component({
   selector: 'app-products',

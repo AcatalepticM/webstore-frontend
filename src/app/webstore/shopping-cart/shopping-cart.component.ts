@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
-import {WebstoreService} from '../services/WebstoreService';
+import {WebstoreService} from '../../services/WebstoreService';
 import {Subscription} from 'rxjs';
 import {ProductOrders} from '../models/product-orders.model';
 import {ProductOrder} from '../models/product-order.model';

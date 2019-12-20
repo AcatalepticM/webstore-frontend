@@ -14,9 +14,11 @@
           </li>
         </ul>
         <span class="navbar-text actions">
-        <a class="login" routerLink="/login" routerLinkActive="active">Log In</a>
+        <a class="login" routerLink="/admin" routerLinkActive="active" [hidden]="!isLoggedIn">Admin</a>
+        <a class="login" routerLink="/logout" routerLinkActive="active" [hidden]="!isLoggedIn" (click)="logout()">Log out</a>
+        <a class="login" routerLink="/login" routerLinkActive="active" [hidden]="isLoggedIn">Log In</a>
         <a class="btn btn-light action-button" role="button" routerLink="/register"
-           routerLinkActive="active">Sign Up</a></span></div>
+           routerLinkActive="active" [hidden]="isLoggedIn">Sign Up</a></span></div>
     </div>
   </nav>
 </div>

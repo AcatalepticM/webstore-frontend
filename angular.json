@@ -26,7 +26,7 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": ["node_modules/bcrypt/bcrypt.js"]
           },
           "configurations": {
             "production": {

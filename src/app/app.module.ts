@@ -9,26 +9,25 @@ import {ProductsComponent} from './webstore/products/products.component';
 import {OrdersComponent} from './webstore/orders/orders.component';
 import {ShoppingCartComponent} from './webstore/shopping-cart/shopping-cart.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {WebstoreService} from './webstore/services/WebstoreService';
+import {WebstoreService} from './services/WebstoreService';
 import {HomeComponent} from './webstore/home/home.component';
-import {UsersComponent} from './webstore/users/users.component';
-import { LoginComponent } from './webstore/login/login.component';
-import {UsersService} from './webstore/services/UsersService';
+import {RegistrationComponent} from './webstore/registration/registration.component';
+import {LoginComponent} from './webstore/login/login.component';
+import {UserService} from './services/UserService';
+import { AdminComponent } from './webstore/admin/admin.component';
+import {AuthGuard} from './auth.guard';
 
 const routes: Routes = [
-  {path: 'register', component: UsersComponent},
+  {path: 'register', component: RegistrationComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'admin', component: AdminComponent, canActivate: [AuthGuard]},
+  {path: 'login/success', redirectTo: '/', pathMatch: 'full'},
   {path: 'store', component: WebstoreComponent},
-  {path: 'products', component: WebstoreComponent},
+  {path: 'products/:product.id', component: WebstoreComponent},
   {path: '', component: HomeComponent},
-  {path: '**', redirectTo: ''}
-  /*
-  { path: '',
-    redirectTo: '/store',
-    pathMatch: 'full'
-  },
-  */
+  {path: '**', redirectTo: 'login'},
 ];
+
 
 @NgModule({
   declarations: [
@@ -37,9 +36,10 @@ const routes: Routes = [
     ProductsComponent,
     OrdersComponent,
     ShoppingCartComponent,
-    UsersComponent,
+    RegistrationComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +48,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(routes, {enableTracing: true})
   ],
-  providers: [WebstoreService, UsersService],
+  providers: [WebstoreService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
