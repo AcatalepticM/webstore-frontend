@@ -1,3 +1,5 @@
+
+
 .image_title {
   background: rgba(0, 0, 0, .4);
   position: absolute;
@@ -111,4 +113,14 @@
 
 .navigation-clean-button .navbar-text .action-button:hover {
   background: #eb3b60
+}
+
+footer.sticky-footer {
+  padding: 10rem 0;
+  flex-shrink: 0
+}
+
+footer.sticky-footer .copyright {
+  line-height: 1;
+  font-size: .8rem
 }

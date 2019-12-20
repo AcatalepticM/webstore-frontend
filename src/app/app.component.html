@@ -14,7 +14,7 @@
           </li>
         </ul>
         <span class="navbar-text actions">
-        <a class="login" routerLink="/admin" routerLinkActive="active" [hidden]="!isLoggedIn">Admin</a>
+        <a class="login" routerLink="/admin" routerLinkActive="active" [hidden]="!isLoggedIn">Settings</a>
         <a class="login" routerLink="/logout" routerLinkActive="active" [hidden]="!isLoggedIn" (click)="logout()">Log out</a>
         <a class="login" routerLink="/login" routerLinkActive="active" [hidden]="isLoggedIn">Log In</a>
         <a class="btn btn-light action-button" role="button" routerLink="/register"
@@ -24,3 +24,9 @@
 </div>
 
 <router-outlet></router-outlet>
+
+<footer class="bg-white sticky-footer">
+  <div class="container my-auto">
+    <div class="text-center my-auto copyright"><span>Copyright © M WebStore 2019</span></div>
+  </div>
+</footer>

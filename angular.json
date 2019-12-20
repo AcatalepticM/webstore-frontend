@@ -20,13 +20,19 @@
             "tsConfig": "tsconfig.app.json",
             "aot": false,
             "assets": [
+              { "glob": "**/*", "input": "src/assets/", "output": "/assets/" },
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/assets/img",
+              "src/assets/js",
+              "src/assets/css"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": ["node_modules/bcrypt/bcrypt.js"]
+            "scripts": [
+
+            ]
           },
           "configurations": {
             "production": {
@@ -85,8 +91,12 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
+              { "glob": "**/*", "input": "src/assets/", "output": "/assets/" },
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/assets/img",
+              "src/assets/js",
+              "src/assets/css"
             ],
             "styles": [
               "src/styles.css"
@@ -120,6 +130,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "webstore-frontend"
 }

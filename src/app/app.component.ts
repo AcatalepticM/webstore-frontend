@@ -3,6 +3,7 @@ import {WebstoreService} from './services/WebstoreService';
 import {WebstoreComponent} from './webstore/webstore.component';
 import {UserService} from './services/UserService';
 import {AuthService} from './services/auth.service';
+import {AdminComponent} from './webstore/admin/admin.component';
 
 @Component({
   selector: 'app-root',
@@ -31,6 +32,7 @@ export class AppComponent implements OnInit {
 
   @ViewChild('webstoreC', {static: false})
   webstoreC: WebstoreComponent;
+
 
   toggleCollapsed(): void {
     this.collapsed = !this.collapsed;

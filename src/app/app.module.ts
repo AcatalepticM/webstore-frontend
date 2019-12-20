@@ -17,16 +17,19 @@ import {UserService} from './services/UserService';
 import { AdminComponent } from './webstore/admin/admin.component';
 import {AuthGuard} from './auth.guard';
 import { ErrorComponent } from './webstore/error/error.component';
+import {AuthService} from './services/auth.service';
 
 const routes: Routes = [
   {path: 'register', component: RegistrationComponent},
+  {path: '404', component: ErrorComponent},
   {path: 'login', component: LoginComponent},
   {path: 'admin', component: AdminComponent, canActivate: [AuthGuard]},
-  {path: 'login/success', redirectTo: '/', pathMatch: 'full'},
+  {path: 'logout', redirectTo: '', pathMatch: 'full'},
   {path: 'store', component: WebstoreComponent},
   {path: 'products/:product.id', component: WebstoreComponent},
+  {path: 'products', component: WebstoreComponent},
   {path: '', component: HomeComponent},
-  {path: '**', redirectTo: 'login'},
+  {path: '**', redirectTo: '404'},
 ];
 
 
