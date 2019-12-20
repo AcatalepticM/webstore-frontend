@@ -1,16 +1,46 @@
 <div class="register-photo">
   <div class="form-container">
     <div class="image-holder" style="background-position: center;"></div>
-    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmitRegister()">
+      <h2 class="sr-only">Registration Form</h2>
       <h2 class="text-center"><strong>Create</strong> an account.</h2>
-      <div class="form-group"><input class="form-control" type="text" id="username" name="username" placeholder="Username" required ngModel></div>
-      <div class="form-group"><input class="form-control" type="email" id="email" name="email" placeholder="Email" required ngModel></div>
-      <div class="form-group"><input class="form-control" type="password" id="password" name="password" placeholder="Password" required ngModel></div>
-      <div class="form-group"><input class="form-control" type="password" name="password-repeat" placeholder="Password (repeat)" required=""></div>
-      <div class="form-group">
-        <div class="form-check"><label class="form-check-label"><input class="form-check-input" type="checkbox" required="">I agree to the license terms.</label></div>
+      <div [ngClass]="{'has-error': isSubmitted && formControls.username.errors}">
+        <input class="form-control" type="text" placeholder="Username" formControlName="username"></div>
+      <div *ngIf="isSubmitted && formControls.username.errors" class="has-error">
+        <div *ngIf="formControls.username.errors.required">Username required</div>
+        <div *ngIf="formControls.username.errors.minlength">Minimum 4 characters required</div>
       </div>
-      <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Sign Up</button></div>
-      <a class="already" routerLink="/login" routerLinkActive="active">You already have an account? Login here.</a></form>
+      <div [ngClass]="{'has-error': isSubmitted && formControls.email.errors}">
+        <input class="form-control" type="email" placeholder="Email" formControlName="email"></div>
+      <div *ngIf="isSubmitted && formControls.email.errors" class="has-error">
+        <div *ngIf="formControls.email.errors.required">Email required</div>
+        <div *ngIf="formControls.email.errors.email">Please enter a valid email</div>
+      </div>
+      <div [ngClass]="{'has-error': isSubmitted && formControls.password.errors}">
+        <input class="form-control" type="password" placeholder="Password" formControlName="password"></div>
+      <div *ngIf="isSubmitted && formControls.password.errors" class="has-error">
+        <div *ngIf="formControls.password.errors.required">Password required</div>
+        <div *ngIf="formControls.password.errors.minlength">Minimum 6 characters required</div>
+      </div>
+      <div [ngClass]="{'has-error': isSubmitted && formControls.passwordConfirm.errors}">
+        <input class="form-control" type="password" placeholder="Password (repeat)" formControlName="passwordConfirm">
+      </div>
+      <div *ngIf="isSubmitted && formControls.passwordConfirm.errors" class="has-error">
+        <div *ngIf="formControls.passwordConfirm.errors.required">Password confirmation required</div>
+        <div *ngIf="formControls.passwordConfirm.errors.mustMatch">Passwords must match!</div>
+      </div><br>
+      <div class="form-group">
+        <div class="form-check"><label class="form-check-label">
+          <input class="form-check-input" type="checkbox" formControlName="acceptTerms"
+                 [ngClass]="{'has-error': isSubmitted && formControls.acceptTerms.errors}">I accept the Terms &
+          Conditions</label>
+          <div *ngIf="isSubmitted && formControls.acceptTerms.errors" class="has-error">Acceptance is required</div>
+        </div>
+      </div>
+      <div class="btn-block">
+        <button class="btn btn-primary btn-block" type="submit">Register</button>
+        <button class="btn btn-secondary btn-block" type="reset" (click)="onReset()">Reset</button>
+      </div>
+      <a class="already" routerLink="/login" routerLinkActive="active">Already have an account? Login here.</a></form>
   </div>
 </div>

@@ -16,6 +16,7 @@ import {LoginComponent} from './webstore/login/login.component';
 import {UserService} from './services/UserService';
 import { AdminComponent } from './webstore/admin/admin.component';
 import {AuthGuard} from './auth.guard';
+import { ErrorComponent } from './webstore/error/error.component';
 
 const routes: Routes = [
   {path: 'register', component: RegistrationComponent},
@@ -39,7 +40,8 @@ const routes: Routes = [
     RegistrationComponent,
     HomeComponent,
     LoginComponent,
-    AdminComponent
+    AdminComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

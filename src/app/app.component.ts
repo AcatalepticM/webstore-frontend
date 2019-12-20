@@ -13,7 +13,7 @@ import {AuthService} from './services/auth.service';
 export class AppComponent implements OnInit {
   title = 'M WebStore';
   private collapsed = true;
-  private isLoggedIn = false;
+  isLoggedIn = false;
 
   constructor(private authService: AuthService) {  }
   ngOnInit() {

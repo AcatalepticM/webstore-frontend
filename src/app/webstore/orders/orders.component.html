@@ -6,7 +6,7 @@
 </ul>
 <h3 class="text-right">Total amount: ${{ total }}</h3>
 
-<button class="btn btn-primary btn-block" (click)="pay()" *ngIf="!paid">Pay</button>
+<button class="btn btn-danger btn-block" (click)="pay()" *ngIf="!paid">Pay</button>
 <div class="alert alert-success" role="alert" *ngIf="paid">
-  <strong>Congratulations!</strong> You successfully made the order.
+  <strong>Congratulations!</strong> Order successfully made.
 </div>

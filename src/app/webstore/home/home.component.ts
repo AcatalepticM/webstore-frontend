@@ -8,7 +8,7 @@ import {WebstoreService} from '../../services/WebstoreService';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  private products: Product[] = [];
+  products: Product[] = [];
 
   constructor(private webstoreService: WebstoreService) {
   }

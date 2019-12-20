@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../services/UserService';
 import {User} from '../models/users.model';
 import {Router} from '@angular/router';
-
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 
 @Component({
@@ -11,29 +11,70 @@ import {Router} from '@angular/router';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  private users: User[] = [];
   private user: User;
 
-  constructor(private userService: UserService, public router: Router) {
+  registrationForm: FormGroup;
+  isSubmitted = false;
+
+  constructor(private userService: UserService,
+              public router: Router,
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
-    this.loadUsers();
+    this.registrationForm = this.formBuilder.group({
+        username: ['', [Validators.required, Validators.minLength(4)]],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        passwordConfirm: ['', [Validators.required, Validators.minLength(6)]],
+        acceptTerms: [false, Validators.requiredTrue]
+      }, {
+        validator: this.mustMatch('password', 'passwordConfirm')
+      }
+    );
   }
 
-  loadUsers() {
-    this.userService.getAllUsers()
-      .subscribe(
-        (users: any[]) => {
-          this.users = users;
-        },
-        (error) => console.log(error)
-      );
+  get formControls() {
+    return this.registrationForm.controls;
   }
 
-  onSubmit(f) {
+  onSubmitRegister() {
+    this.isSubmitted = true;
+
+    if (this.registrationForm.invalid) {
+      return;
+    }
+
+    this.userService.createUser(this.registrationForm.value);
+    this.router.navigateByUrl('/login');
+
+  }
+
+  mustMatch(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+      const control = formGroup.controls[controlName];
+      const matchingControl = formGroup.controls[matchingControlName];
+
+      if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+        return;
+      }
+
+      if (control.value !== matchingControl.value) {
+        matchingControl.setErrors({mustMatch: true});
+      } else {
+        matchingControl.setErrors(null);
+      }
+    };
+  }
+
+  onReset() {
+    this.isSubmitted = false;
+    this.registrationForm.reset();
+  }
+
+  /*onSubmit(f) {
    this.user = new User(f.value.username, f.value.email, f.value.password);
    this.userService.createUser(this.user);
    this.router.navigate(['/login']);
-  }
+  }*/
 }

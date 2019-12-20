@@ -84,3 +84,15 @@
   opacity: .9;
   text-decoration: none
 }
+
+.register-photo .has-error {
+  border-color: #eb3b60;
+  color: #eb3b60;
+
+}
+
+.register-photo .has-error input {
+  border-color: #eb3b60;
+  color: #eb3b60;
+
+}
