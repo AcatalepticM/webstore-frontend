@@ -53,7 +53,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(routes, {enableTracing: true})
   ],
-  providers: [WebstoreService, UserService],
+  providers: [WebstoreService, UserService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

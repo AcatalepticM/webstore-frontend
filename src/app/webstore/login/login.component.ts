@@ -4,7 +4,6 @@ import {Router} from '@angular/router';
 import {User} from '../models/users.model';
 import {UserService} from '../../services/UserService';
 import {AuthService} from '../../services/auth.service';
-import * as Bcrypt from 'bcrypt';
 
 @Component({
   selector: 'app-login',
